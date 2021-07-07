@@ -1,15 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <stdlib.h>//mallocが実行できないから
+#include <math.h>//sqrtが実行できないから
 
-int myRoot(double x) // x の平方根を返す関数。x >= 0 ではないとき exit(1) とする。
+double myRoot(double x) // x の平方根を返す関数。x >= 0 ではないとき exit(1) とする。
+//double型にしないと整数の形で渡されてしまう
 {
-  double y;
+  double y;//整数型として渡されてしまうから
+
   if( x < 0 ){
     exit(1);
   }
   y = sqrt(x);
-  return y;
+  return sqrt(x);
 }
 
 int main(void)
@@ -18,7 +20,7 @@ int main(void)
   double *x = (double *)malloc(sizeof(double) * 100);
 
   while( i <= 100 ){
-    x[i] = myRoot((double)i);
+    x[i]=myRoot(i);
     i++;
   }
 
